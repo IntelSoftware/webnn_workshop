@@ -78,7 +78,7 @@ async function main() {
     const inputBuffer = utils.getInputTensor(input, inputOptions);
     let outputBuffer = await netInstance.compute(inputBuffer);
     const outputs = getTopClasses(outputBuffer, labels);
-    document.getElementById('output').innerHTML += outputs[0].label;
+    document.getElementById('output').innerHTML = outputs[0].label;
   } catch (error) {
     console.log(error);
   }

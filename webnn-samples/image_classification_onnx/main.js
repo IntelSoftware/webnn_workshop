@@ -2,6 +2,8 @@
 // Modified some functions
 // Used exported ONNX model and get labels from exported config.json
 
+'use strict';
+
   async function classifyImage(pathToImage){
     var imageTensor = await getImageTensorFromPath(pathToImage); // Convert image to a tensor
     var predictions = await runModel(imageTensor); // Run inference on the tensor
@@ -62,7 +64,7 @@
       // For example, if a model's only key is batch_size, you only need to set
       // freeDimensionOverrides: {"batch_size": 1}
     };
-    modelSession = await ort.InferenceSession.create(modelPath, options); 
+    const modelSession = await ort.InferenceSession.create(modelPath, options); 
 
     // Create feeds with the input name from model export and the preprocessed data. 
     const feeds = {}; 

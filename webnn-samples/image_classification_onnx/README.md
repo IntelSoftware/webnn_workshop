@@ -1,6 +1,11 @@
 # Image Classification using WebNN with onnxruntime-web
 
-Sample created using [Microsoft WebNN Tutorial](https://learn.microsoft.com/en-us/windows/ai/directml/webnn-tutorial), but uses ONNX model that is exported from HuggingFace using _optimum-cli_ and the labels are parsed from model's _config.json_ file.
+Sample created using [Microsoft WebNN Tutorial](https://learn.microsoft.com/en-us/windows/ai/directml/webnn-tutorial), with these changes:
+- Uses ONNX model that is exported from HuggingFace using _optimum-cli_
+- labels are parsed from model's _config.json_ file
+- HTML UI modified to select images using image selector
+- added device selection priority to try in this order: webnn-npu, webnn-gpu, webgpu, wasm, webnn-cpu.
+- created _model_export.sh_ script to export any HuggingFace model to ONNX using _optimum-cli_
 
 The sample uses ONNX model exported from HuggingFace to build an image classification system on the web that uses __WebNN with ONNX Runtime Web__. 
 
@@ -8,7 +13,9 @@ The sample uses ONNX model exported from HuggingFace to build an image classific
 |---|---|
 |index.html|HTML for basic UI|
 |main.js|main javasvript file to perform image selection and classification using ONNX Runtime Web|
-|model_export.sh|script to export HuggingFace models:<br>- google/mobilenet_v2_1.0_224<br>- facebook/convnextv2-atto-1k-224<br>- microsoft/resnet-18|
+|main_device_priority.js| (optional) same as _main.js_ but with device selection priority added to try webnn-npu first, if not available tries webnn-gpu, then webgpu, wasm, ...|
+|model_export.sh|script for linux to export HuggingFace models:<br>- google/mobilenet_v2_1.0_224<br>- facebook/convnextv2-atto-1k-224<br>- microsoft/resnet-18|
+|model_export.bat|script for Windows to export HuggingFace models:<br>- google/mobilenet_v2_1.0_224<br>- facebook/convnextv2-atto-1k-224<br>- microsoft/resnet-18|
 |google_mobilenet_v2_1.0_224/ |ONNX exported model folder generated from _model_export.sh_ script. The folder contains 3 files: [config.json, model.onnx, preprocessor_config.json]|
 
 Can be tested using the "Live Preview" extension for VSCode
@@ -17,12 +24,29 @@ Can be tested using the "Live Preview" extension for VSCode
 
 _model_export.sh_ script can be used to export any HuggingFace image classification model to ONNX and can be used by updating model path in _main.js_
 
+#### Instructions for Linux
+
+Make sure conda is installed (install mini-forge) and then run commands below in terminal.
+
 To run the _model_export.sh_ script, first create an virtual environment and then run the script:
 ```
 conda create -n onnx_export python=3.10
 conda activate onnx_export
 source model_export.sh
 ```
+
+#### Instructions for Windows
+
+Make sure conda is installed (install mini-forge) and then run commands below in terminal.
+
+To run the _model_export.bat_ script, first create an virtual environment and then run the script:
+```
+conda create -n onnx_export python=3.10
+conda activate onnx_export
+model_export.bat
+```
+
+#### model_export script details
 
 _model_export.sh_ script will install necessary packages using _pip_ and will use _optimum-cli_ to export HuggingFace models to ONNX.
 

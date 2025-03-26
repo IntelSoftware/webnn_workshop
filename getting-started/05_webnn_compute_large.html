@@ -29,8 +29,8 @@
   document.getElementsByTagName('body')[0].innerHTML += "<p>Starting Computation...</p>";
 
   const builder = new MLGraphBuilder(context);
-  const input = {dataType: 'float32', dimensions: [10000, 10000], shape: [10000, 10000], usage: MLTensorUsage.WRITE, writable: true};
-  const output = {dataType: 'float32', dimensions: [10000, 10000], shape: [10000, 10000], usage: MLTensorUsage.READ, readable: true};
+  const input = {dataType: 'float32', shape: [10000, 10000], writable: true};
+  const output = {dataType: 'float32', shape: [10000, 10000], readable: true};
   // Step 1: Create a computational graph calculating `c = a * b`.
   const a = builder.input('a', input);
   const b = builder.input('b', input);

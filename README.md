@@ -1,5 +1,5 @@
 # WebNN
-WebNN code samples
+WebNN content for trainings and workshops, includes basics of getting started with WebNN application developement, WebNN samples using different JS-frameworks and also direct WebNN API access. Finally a demo showcasing real-world usage of WebNN inference in WebApp.
 
 ## Getting Started
 
@@ -23,5 +23,13 @@ Simple WebNN samples showcasing AI inference using WebNN that can be run on Brow
 |[image_classification_transformers.js](webnn-samples/image_classification_transformers.js)|The sample uses __transformers.js library__ to build an image classification system on the web that uses model directly from HuggingFace or local model|
 |[image_classification_webnn](webnn-samples/image_classification_webnn)|The sample uses __WebNN API directly__ to build an image classification system on the web that uses MobileNetV2 model.|
 
+
+## WebNN Demos
+
+WebApp Demos showcasing WebNN AI Inference in Web Browser.
+
+|Sample Name | Details|
+|---|---|
+|[demo-image-classify](webnn-demos/demo-image-classify)| The webapp demo show chat application that shows receiving images and image-classification model is used to clasify the received image, the demo uses transformers.js and reset image-classification model.|
 
 As of 01/2025, these examples work on Windows* 11 on Google* Chrome or Microsoft* Edge browser.

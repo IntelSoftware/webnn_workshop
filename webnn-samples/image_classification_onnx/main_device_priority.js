@@ -2,6 +2,8 @@
 // Modified some functions
 // Used exported ONNX model and get labels from exported config.json
 
+'use strict';
+
   async function classifyImage(pathToImage){
     var imageTensor = await getImageTensorFromPath(pathToImage); // Convert image to a tensor
     var predictions = await runModel(imageTensor); // Run inference on the tensor
